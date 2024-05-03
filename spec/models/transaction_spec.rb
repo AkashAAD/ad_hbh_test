@@ -45,6 +45,52 @@ RSpec.describe Transaction, type: :model do
     end
   end
 
+  describe 'invalidates' do
+    context 'on create' do
+      it 'invalidates plan' do
+        transaction = build(
+          :transaction,
+          user: create(:user, subscription: create(:subscription, plan_name: 'Silver', books_limit: 2, magazines_limit: 0)),
+          library_item: create(:library_item, kind: 'magazine')
+        )
+
+        expect(transaction).not_to be_valid
+      end
+
+      it 'validates age' do
+        transaction = build(
+          :transaction,
+          user: build(:user, age: 17, subscription: build(:subscription, plan_name: 'Silver', books_limit: 2, magazines_limit: 0)),
+          library_item: build(:library_item, genre: 'Crime', kind: 'book')
+        )
+
+        expect(transaction).not_to be_valid
+      end
+
+      it 'validates transactions' do
+        user = build(:user,subscription: build(:subscription))
+
+        10.times do
+          transaction = create(
+            :transaction,
+            user: user,
+            library_item: build(:library_item)
+          )
+
+          transaction.update(status: 'return')
+        end
+
+        transaction = build(
+          :transaction,
+          user: user,
+          library_item: build(:library_item)
+        )
+
+        expect(transaction).not_to be_valid
+      end
+    end
+  end
+
   describe 'callbacks' do
     context 'when transaction create or update' do
       it 'updates book availability after save' do
