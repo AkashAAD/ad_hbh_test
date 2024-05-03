@@ -51,8 +51,8 @@ module Api
         )
       end
 
-      def render_not_found(resource)
-        render json: { message: "#{resource} not found." }, status: :not_found
+      def render_not_found(source)
+        render json: { message: "#{source} not found." }, status: :not_found
       end
     end
   end
