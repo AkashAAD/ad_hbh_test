@@ -59,6 +59,7 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
 
   # Filter lines from Rails gems in backtraces.
+  config.include FactoryBot::Syntax::Methods
   config.filter_rails_from_backtrace!
   Shoulda::Matchers.configure do |config|
     config.integrate do |with|
