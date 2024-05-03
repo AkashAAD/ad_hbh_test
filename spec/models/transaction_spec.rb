@@ -55,10 +55,10 @@ RSpec.describe Transaction, type: :model do
           status: 'return'
         )
 
-        expect(LibraryItem.last.reload.availability).to be_truthy
+        expect(LibraryItem.last.availability).to be_truthy
 
         transaction.update(status: 'borrowed')
-        expect(LibraryItem.last.reload.availability).to be_falsey
+        expect(LibraryItem.last.availability).to be_falsey
       end
     end
   end
