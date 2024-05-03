@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: hbh_test_dev
+
+test:
+  <<: *default
+  database: hbh_test_test
+
+production:
+  <<: *default
+  database: hbh_test_prod
