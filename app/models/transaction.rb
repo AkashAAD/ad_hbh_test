@@ -2,9 +2,9 @@ class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :library_item
 
-  validate :validate_plan, on: :create
-  validate :validate_age, on: :create
-  validate :validate_transactions, on: :create
+  validate :validate_plan,
+    :validate_age,
+    :validate_transactions, on: :create
 
   after_save :update_book_availability
 
