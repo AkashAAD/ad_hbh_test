@@ -47,17 +47,31 @@ RSpec.describe Transaction, type: :model do
 
   describe 'invalidates' do
     context 'on create' do
-      it 'invalidates plan' do
-        transaction = build(
-          :transaction,
-          user: create(:user, subscription: create(:subscription, plan_name: 'Silver', books_limit: 2, magazines_limit: 0)),
-          library_item: create(:library_item, kind: 'magazine')
-        )
+      context 'when library_item is magazine' do
+        it 'invalidates plan' do
+          transaction = build(
+            :transaction,
+            user: create(:user, subscription: create(:subscription, plan_name: 'Silver', books_limit: 2, magazines_limit: 0)),
+            library_item: create(:library_item, kind: 'magazine')
+          )
 
-        expect(transaction).not_to be_valid
+          expect(transaction).not_to be_valid
+        end
       end
 
-      it 'validates age' do
+      context 'when library_item is book' do
+        it 'invalidates plan' do
+          transaction = build(
+            :transaction,
+            user: create(:user, subscription: create(:subscription, plan_name: 'Silver', books_limit: 0, magazines_limit: 0)),
+            library_item: create(:library_item, kind: 'book')
+          )
+
+          expect(transaction).not_to be_valid
+        end
+      end
+
+      it 'invalidates age' do
         transaction = build(
           :transaction,
           user: build(:user, age: 17, subscription: build(:subscription, plan_name: 'Silver', books_limit: 2, magazines_limit: 0)),
@@ -67,7 +81,7 @@ RSpec.describe Transaction, type: :model do
         expect(transaction).not_to be_valid
       end
 
-      it 'validates transactions' do
+      it 'invalidates transactions' do
         user = build(:user,subscription: build(:subscription))
 
         10.times do
