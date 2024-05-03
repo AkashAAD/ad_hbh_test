@@ -31,7 +31,11 @@ module Api
           returned_items << item
         end
 
-        render json: { message: "#{returned_items.join(', ')} items returned successfully." }, status: :ok
+        if returned_items.count == 0
+          render_not_found('Items')
+        else
+          render json: { message: "#{returned_items.join(', ')} items returned successfully." }, status: :ok
+        end
       end
 
       private
