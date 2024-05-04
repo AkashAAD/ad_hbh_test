@@ -17,4 +17,4 @@ Instructions:
   - to run the specs(test cases) `rspec spec`
   - to check the coverage run `open coverage/index.html`
  
-* NOTE: I've included a JSON collection for the API, which can be used to execute requests in Postman or any api testing tool (here)[https://github.com/AkashAAD/ad_hbh_test/blob/main/api_collection/collection.json].
+* NOTE: I've included a JSON collection for the API, which can be used to execute requests in Postman or any api testing tool [here](https://github.com/AkashAAD/ad_hbh_test/blob/main/api_collection/collection.json).
