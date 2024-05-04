@@ -1,5 +1,7 @@
 # README
 
+# [Assignment](https://github.com/AkashAAD/ad_hbh_test/blob/main/api_collection/HBH_Developer_Take_Home_Assignment.pdf)
+
 Instructions:
 
 * Ruby version - 3.3.0
