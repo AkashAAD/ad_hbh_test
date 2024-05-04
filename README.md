@@ -15,3 +15,6 @@ Instructions:
   - run `rails db:create db:migrate db:seed`
   - to run the app `rails s`
   - to run the specs(test cases) `rspec spec`
+  - to check the coverage run `open coverage/index.html`
+ 
+* NOTE: I've included a JSON collection for the API, which can be used to execute requests in Postman or any api testing tool.
